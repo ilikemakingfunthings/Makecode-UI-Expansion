@@ -3,6 +3,7 @@
 //% color="#FF6B35" icon="\uf245"
 namespace ui {
     let cursorSprite: Sprite = null
+    let lastButton: UIButton = null
     let allButtons: UIButton[] = []
 
     export class UIButton {
@@ -25,7 +26,7 @@ namespace ui {
 
     //% block="show cursor with $img"
     //% img.shadow=screen_image_picker
-    export function showCursor(img: Image): Sprite {
+    export function showCursor(img: Image): void {
         if (cursorSprite) {
             cursorSprite.destroy()
         }
@@ -37,7 +38,6 @@ namespace ui {
                 cursorSprite.y = screen.height / 2 + controller.dy() * 4
             }
         })
-        return cursorSprite
     }
 
     //% block="hide cursor"
@@ -52,8 +52,9 @@ namespace ui {
     //% x.defl=80
     //% y.defl=60
     //% img.shadow=screen_image_picker
-    export function createButton(x: number, y: number, img: Image): UIButton {
+    export function createButton(x: number, y: number, img: Image): void {
         let btn = new UIButton(x, y, img)
+        lastButton = btn
         allButtons.push(btn)
         
         controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
@@ -65,13 +66,13 @@ namespace ui {
                 }
             }
         })
-        
-        return btn
     }
 
-    //% block="on $btn click $handler"
-    export function onButtonClick(btn: UIButton, handler: () => void): void {
-        btn.onClick(handler)
+    //% block="on button click $handler"
+    export function onButtonClick(handler: () => void): void {
+        if (lastButton) {
+            lastButton.onClick(handler)
+        }
     }
 
     //% block="clear all buttons"
@@ -80,11 +81,5 @@ namespace ui {
             btn.destroy()
         }
         allButtons = []
-    }
-
-    //% block="create cursor with $img"
-    //% img.shadow=screen_image_picker
-    export function createCursor(img: Image): Sprite {
-        return sprites.create(img)
     }
 }
