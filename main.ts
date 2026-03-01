@@ -64,7 +64,7 @@ namespace ui {
             if (cursorSprite && btn.onClickHandler) {
                 let dx = Math.abs(cursorSprite.x - btn.sprite.x)
                 let dy = Math.abs(cursorSprite.y - btn.sprite.y)
-                if (dx < img.width / 2 && dy < img.height / 2) {
+                if (dx < 20 && dy < 20) {
                     btn.onClickHandler()
                 }
             }
@@ -75,7 +75,6 @@ namespace ui {
 
     //% block="$btn on click $handler"
     //% btn.decompile=true
-    //% handler.shadow=function_definition
     export function onButtonClick(btn: UIButton, handler: () => void): void {
         btn.onClick(handler)
     }
