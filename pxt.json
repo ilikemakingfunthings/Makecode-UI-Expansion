@@ -1,0 +1,18 @@
+{
+    "name": "UI Expansion",
+    "version": "1.0.0",
+    "description": "UI Expansion Extension for MakeCode Arcade - Create buttons, cursors, and interactive UI elements with ease!",
+    "files": [
+        "main.ts",
+        "README.md"
+    ],
+    "supportedTargets": [
+        "arcade"
+    ],
+    "dependencies": {
+        "device": "*"
+    },
+    "testDependencies": {},
+    "public": true,
+    "preferredEditor": "tsprj"
+}
