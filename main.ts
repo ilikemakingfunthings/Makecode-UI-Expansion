@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-//% color="#FF6B35" icon="\uf245" block="UI"
+//% weight=100 color="#FF6B35" icon="\uf245"
 namespace ui {
-    //% block="show test message"
+    //% weight=100 block="show test message"
     export function testBlock(): void {
-        // Test block - if this appears, extension is loading
+        // Test block
     }
 }
